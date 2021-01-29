@@ -23,7 +23,7 @@ cd ../..
 cp .appinventor/appinventor/build/components/deps/* \
    .appinventor/appinventor/components/build/AnnotationProcessor.jar \
    .appinventor/appinventor/build/components/AndroidRuntime.jar \
-   lib/appinventor/
+   lib/appinventor/ -r
 cd lib/appinventor
 git add .
 MSG="App Inventor release $TAG"
