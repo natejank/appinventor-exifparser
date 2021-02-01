@@ -8,8 +8,11 @@ import com.google.appinventor.components.runtime.ComponentContainer;
 import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.util.YailDictionary;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 
 /*This extension is intended to be nothing more than a wrapper around android.media.ExifInterface, as to allow you to
@@ -20,6 +23,7 @@ import java.io.IOException;
         category = ComponentCategory.EXTENSION,
         description = "An extension to allow for parsing of EXIF metadata within appinventor",
         nonVisible = true, iconName = "")
+@UsesPermissions()
 @SimpleObject(external = true)
 public class ExifParse extends AndroidNonvisibleComponent {
 
@@ -58,6 +62,18 @@ public class ExifParse extends AndroidNonvisibleComponent {
             image.setAttribute((String) key, (String) values.get(key));
         }
         image.saveAttributes();
+    }
+
+    @SimpleFunction(description = "Writes attributes.  Use this sparingly, because it involves " +
+            "copying all the data from one file to another and deleting the old file and renaming the other." +
+            "This writes the attributes to a new file.  Be careful though, as it will not try to create" +
+            " a new directory if it doesn't already exist.")
+    public static void setAttributesCopy(YailDictionary values, String inputPath, String outputPath) throws IOException {
+        Path input = Paths.get(inputPath);
+        Path output = Paths.get(outputPath);
+        Files.copy(input, output, StandardCopyOption.REPLACE_EXISTING);
+
+        setAttributes(values, outputPath);
     }
 
     @SimpleEvent(description = "Handle errors that occur from the library")

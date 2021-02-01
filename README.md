@@ -24,6 +24,19 @@ string
       - A file path (you can get this from something like ImagePicker.Selection)
  - This doesn't return anything, but it will write the file to where you choose
 
+### setAttributesCopy
+ - This is essentially the same as setAttribute, but instead it also allows you to copy the output to a new file.  
+   This needed to be a new method because AppInventor doesn't support overloading.
+ - This method takes in one new argument
+    - An output file path, which is where the new metadata will be written to.
+   
+### Constants
+ - As you may see, there are a lot of constants in ExifParse.  There are no nonstatic variables in this extension, so
+   if it wasn't mentioned above, it's a constant.  These are all possible exif tag names, which may or may not exist in 
+   your specific image.  Each one needs to be set to something different.  To learn more about a specific tag, search 
+   the [ExifInterface Documentation](https://developer.android.com/reference/android/media/ExifInterface). Each variable
+   name was copied directly from the Java class, so each name should be the same.
+
 ## How to build:
 Because this doesn't use anything other than Android and Java's standard library,
 all you need is to build it and add it to your project.
