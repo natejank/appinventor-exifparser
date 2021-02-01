@@ -7,7 +7,6 @@ import com.google.appinventor.components.runtime.AndroidNonvisibleComponent;
 import com.google.appinventor.components.runtime.ComponentContainer;
 import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.util.YailDictionary;
-import com.google.appinventor.components.runtime.util.YailList;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,19 +22,6 @@ import java.io.IOException;
         nonVisible = true, iconName = "")
 @SimpleObject(external = true)
 public class ExifParse extends AndroidNonvisibleComponent {
-
-    public static final String[] EXIF_ATTRIBUTES = {
-            ExifInterface.TAG_DATETIME,
-            ExifInterface.TAG_GPS_LATITUDE,
-            ExifInterface.TAG_GPS_LONGITUDE,
-            ExifInterface.TAG_EXPOSURE_TIME,
-            ExifInterface.TAG_GPS_ALTITUDE,
-            ExifInterface.TAG_GPS_ALTITUDE_REF,
-            ExifInterface.TAG_GPS_LATITUDE,
-            ExifInterface.TAG_GPS_LONGITUDE,
-            ExifInterface.TAG_DEVICE_SETTING_DESCRIPTION,
-            ExifInterface.TAG_IMAGE_UNIQUE_ID
-    };
 
     public ExifParse(ComponentContainer container) {
         super(container.$form());
@@ -72,15 +58,6 @@ public class ExifParse extends AndroidNonvisibleComponent {
             image.setAttribute((String) key, (String) values.get(key));
         }
         image.saveAttributes();
-    }
-
-    @SimpleProperty(description = "Nets the possible tags that can be stored in an image's metadata." +
-            "  Not all of this will be present in every image.")
-    public static YailList exifAttributes() {
-        YailList attributes = new YailList();
-        for (String field : EXIF_ATTRIBUTES)
-            attributes.add(field);
-        return attributes;
     }
 
     @SimpleEvent(description = "Handle errors that occur from the library")
