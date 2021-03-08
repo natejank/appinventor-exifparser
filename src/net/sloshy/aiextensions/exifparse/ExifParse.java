@@ -33,19 +33,19 @@ public class ExifParse extends AndroidNonvisibleComponent {
 
     /* I don't know if this is the *best* way to do this, I just needed some way to ensure that you can't be trying to
      * use a null file.  The best way I could find to do that was to always make the user input a filepath, rather than
-     * trying to handle it in the class itself. */
+     * trying to handle it in the class itself. The only other way I could think would be to make a subclass of ImagePicker,
+     * but finding documentation for extensions is hard enough, and the amount of effort that would take would probably be more
+     * than I would actually care to do for this class*/
     private static ExifInterface getExifInterface(String filePath) throws IOException {
         return new ExifInterface(new File(filePath));
     }
 
-    @SimpleFunction(description = "gets the specified attribute.  " +
+    @SimpleFunction(description = "Gets the specified attribute.  " +
             "If the image doesn't have the attribute, returns an empty string.")
     public static String getAttribute(String tagName, String filePath) throws IOException {
         ExifInterface image = getExifInterface(filePath);
         String attr = image.getAttribute(tagName);
-        if (attr == null)
-            return "";
-        return attr;
+        return (attr == null ? "" : attr);
     }
 
     /*While this is more logic that I'd like, I don't see a better way of doing it, because you can't manipulate
@@ -55,8 +55,7 @@ public class ExifParse extends AndroidNonvisibleComponent {
             "copying all the data from one file to another and deleting the old file and renaming the other.")
     public static void setAttributes(YailDictionary values, String filePath) throws IOException {
         ExifInterface image = getExifInterface(filePath);
-        // I'm really not sure this is the best way of accomplishing this, but I'm probably going to use it unless it
-        // really doesn't work
+        // I'm really not sure this is the best way of accomplishing this, but I'm probably going to use it unless it really doesn't work
         Object[] keys = values.keySet().toArray();
           for (Object key : keys) {
             image.setAttribute((String) key, (String) values.get(key));
