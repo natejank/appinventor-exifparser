@@ -1,6 +1,6 @@
 # ExifParse Appinventor Extension
-This was an extension primarily created for a midyear project for my AP Computer Science Principles class.  Anyone is 
-free to use it, but this wasn't intended for general use, so it might not work as expected.
+This was an extension primarily created for personal use in a project in my AP Computer Science Principles class.  Anyone is 
+free to use it if they find it useful.
 
 ## Usage:
 There are only a few procedures that are added with this extension.  They have been kept rather simple, so as much of
