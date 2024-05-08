@@ -6,8 +6,8 @@ free to use it if they find it useful.
 ## How to use
 
 This plugin is designed to be used in conjunction with the ImagePicker or FilePicker blocks. Once you have imported
-the extension (using Extension -> Import extension in the sidebar), drag the ExifParse component to the screen.
-should display as a non-visible component.
+the extension (using Extension → Import extension in the sidebar), drag the ExifParse component to the screen.
+It should display as a non-visible component.
 
 Then, add a code block for ImagePicker.AfterPicking, feeding ImagePicker.Selection and
 the EXIF tag you want into ExifParse.getAttribute/setAttribute. For more information
@@ -17,6 +17,8 @@ or [General EXIF Tag Information](https://exiftool.org/TagNames/EXIF.html).
 
 ![Layout](/example/layout.png)
 ![Code snippet](/example/codesnippet.png)
+
+### App Demo
 
 [App demo](/example/demo.mp4)
 
